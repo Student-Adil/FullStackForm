@@ -1,12 +1,17 @@
 // core module
-const path=require('path');
-const express=require('express')
+// const path=require('path');
+// import mongoose from 'mongoose';
+import path from 'path';
+// const express=require('express')
+import express from 'express';
 const userRouter=express.Router();
 
 
 
-const rooPath=require('../utils/path');
-const { regresterdhomes } = require('./host');
+// const rooPath=require('../utils/path');
+import rooPath from '../utils/path.js';
+// const { regresterdhomes } = require('./host');
+import { regresterdhomes } from './host.js';
 
 userRouter.get("/contact-us",(req,res,next)=>{
   res.sendFile(path.join(rooPath,'views','contact-us.html'))
@@ -26,4 +31,4 @@ userRouter.get("/",(req,res,next)=>{
 res.sendFile(path.join(rooPath,'views','home.html'))
 });
 
-module.exports = userRouter;
+export { userRouter };
