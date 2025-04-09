@@ -1,18 +1,15 @@
 //core module
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+// const { hostRouter } = require('./rotes/host.js');
+import { hostRouter } from './rotes/host.js';
+import { userRouter } from './rotes/user.js';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-import connectDB from './db.js';
-
 import express from 'express';
-//local module
-import userRouter from './routes/user.js';
-import { hostRouter } from './routes/host.js';
-// const rooDir=require('./public')
+import connectDB from './db.js';
+// const rooPath = require('./utils/path.js');
 import rooPath from './utils/path.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -26,9 +23,10 @@ app.use((req, res, next) => {
   res.sendFile(path.join(rooPath, "views", "404.html"));
 });
 
-const PORT = 2000;
+const PORT = 3000;
 app.listen(PORT, () => {
   connectDB();
   console.log("MongoDB connected success"); // Fixed typo in "success"
   console.log(`Server is running on adrsess http//:localhost:${PORT}`);
 });
+
